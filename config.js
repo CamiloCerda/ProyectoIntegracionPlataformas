@@ -1,8 +1,8 @@
 module.exports = {
     NODE_ENV: process.env.NODE_ENV || 'development',
     /* HOST: process.env.HOST || 'localhost', */  
-    HOST: process.env.HOST || 8080,
-    PORT:  3000,
+    /* HOST: process.env.HOST || 3000, */
+    PORT:  process.env.PORT || 3000,
     /* HOST_DATA_BASE: 'localhost',
     USER_DATA_BASE: 'root',
     PASSWORD_DATA_BASE: '',

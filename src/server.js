@@ -23,8 +23,14 @@ app.use((req, res) => {
 });
 
 const port = config.PORT;
-const host = config.HOST;
+//const host = config.HOST;
 
-app.listen(port, host, () => {
+app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 })
+
+/* 
+app.listen(port, host, () => {
+    console.log(`Listening on port ${port}`);
+}) 
+*/
