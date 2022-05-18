@@ -1,0 +1,42 @@
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cajaLogo {
+    display: flex;
+    align-items: center;
+}
+
+.cajaLogo .titulo {
+    font-family:'Beau Rivage', 'Gotic';
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.login {
+    width: 50%;
+    height: 100%;
+    display: flex; 
+    align-items: baseline;
+    justify-content: end;
+}
+
+.addToCart, .masDetalle {
+    font-size: 20px;
+}
+
+.addToCart:hover, .masDetalle:hover {
+    cursor: pointer;
+}
+
+.enlace {
+    width: 99%;
+}
+
+.imgModal {
+    width: 200px;
+    height: 200px;
+}
+

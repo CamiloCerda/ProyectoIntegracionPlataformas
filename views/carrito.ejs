@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('baseHead') -%>
+        <link rel="stylesheet" href="/css/index.css">
+        <!-- <link rel="stylesheet" href="/css/index.css"> -->
+        <title>Carrito</title>
+</head>
+
+<body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand titulo" href="/">
+                    <div class="cajaLogo">
+                        <!-- <div class="logo">
+                        <img src="../img/logo.png" alt="">
+                    </div> -->
+                        <div class="titulo">
+                            <span>MusicPro</span>
+                        </div>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="login">
+                        <h6 class="me-2 text-light">Bienvenido:</h6>
+                        <h6 class="text-light me-4"><i class="fa-solid fa-user me-1 text-light"></i>
+                            <%= user.name %>
+                        </h6>
+                        <a href="/carrito" class="carrito me-4" title="Ir al carrito"><i
+                                class="fa-solid fa-cart-shopping text-light"></i></a>
+                        <% if (user.estado==false ) { %>
+                            <a href="/login" class="btn btn-outline-light">
+                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>Ingresar</a>
+                            <% } else { %>
+                                <a href="/logout" class="btn btn-outline-light">
+                                    <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>Cerrar sesión</a>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Acciones</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Dcto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% productosRender.forEach(function(producto) { %>
+                    <tr>
+                        <th class="col-2">
+                            <a href="/carrito" class="btn btn-outline-danger btnEliminar" title="Eliminar del carrito"
+                                id=<%=producto.idCarrito %>-<%= producto.idProducto %>><i
+                                        class="fa-solid fa-xmark"></i></a>
+                            <a href="#" class="btn btn-outline-info" title="Ver más detalles"><i
+                                    class="fa-solid fa-share"></i></a>
+                        </th>
+                        <th class="col-4">
+                            <%= producto.nombre %>
+                        </th>
+                        <th class="col-2">
+                            <a href="/carrito" class="btn btn-outline-warning btnDisminuir" title="Disminuir cantidad"
+                                id=menos<%=producto.idCarrito %>-<%= producto.idProducto %>><i
+                                        class="fa-solid fa-minus"></i></a>
+                            <%= producto.cantidad %>
+                                <a href="/carrito" class="btn btn-outline-success btnAumentar" title="Aumentar cantidad"
+                                    id=mas<%=producto.idCarrito %>-<%= producto.idProducto %>><i
+                                            class="fa-solid fa-plus"></i></a>
+                        </th>
+                        <th class="col-1">
+                            <%= producto.dcto %>
+                        </th>
+                        <th class="col-2">
+                            <%= producto.precio %>
+                        </th>
+                        <th class="col-2">
+                            <p id=totalProd<%=producto.idCarrito %>-<%= producto.idProducto %>>
+                                <%= producto.totalProducto %>
+                            </p>
+                        </th>
+                    </tr>
+                    <% }); %>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Total:</th>
+                            <th>
+                                <p id="totalGral">
+                                    <%= total %>
+                                </p>
+                            </th>
+                        </tr>
+                        <tr id="filaDolar">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Valor en dolares ($):</th>
+                            <th>
+                                <p id="totalDolares">
+                                    0
+                                </p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <button type="button" class="btn btn-dark" id="btnDolar" title="Ver total en dólares" style="width: 100%;">
+                                    <i class="fa-solid fa-dollar-sign"></i>
+                                    Dólar
+                                </button>
+                            </th>
+                            <th>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" id="btnModalPago" title="Ir a pagar" style="width: 100%;">
+                                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                                </button>
+                            </th>
+                        </tr>
+            </tbody>
+        </table>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ventana de pago</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="inputTotal" class="form-label">Total</label>
+                            <input type="text" class="form-control" id="inputTotal" placeholder="0"
+                                disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formaPago" class="form-label">Forma de pago</label>
+                            <select class="form-select mb-3" aria-label="Default select example" id="formaPago">
+                                <option value="0" selected>Débito</option>
+                                <option value="1">Crédito</option>
+                                <option value="2">Transferencia</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formaEntrega" class="form-label">Forma de retiro</label>
+                            <select class="form-select mb-3" aria-label="Default select example" id="formaEntrega">
+                                <option value="0" selected>Retiro en local</option>
+                                <option value="1">Despacho a domicilio</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="localRetiro" class="form-label">Local de retiro</label>
+                            <select class="form-select mb-3" aria-label="Default select example" id="localRetiro">
+                                <option value="0" selected>Local Alameda</option>
+                                <option value="1">Local Vitacura</option>
+                                <option value="2">Local Apumanque</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="empresaDespacho" class="form-label">Empresa de despacho</label>
+                            <select class="form-select mb-3" aria-label="Default select example" id="empresaDespacho" disabled>
+                                <option value="0" selected>Uber cargo</option>
+                                <option value="1">Turbus cargo</option>
+                                <option value="2">Didi cargo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="btnPagar">Pagar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%- include('baseFoot') -%>
+    <script src="/js/carrito.js"></script>
+
+</html>

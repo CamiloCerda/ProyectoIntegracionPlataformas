@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('baseHead') -%>
+        <link rel="stylesheet" href="/css/index.css">
+        <title>Music Pro - Ventas</title>
+</head>
+
+<body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand titulo" href="/vendedor">
+                    <div class="cajaLogo">
+                        <div class="titulo">
+                            <span>MusicPro</span>
+                        </div>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Opciones
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/vendedor">Revisar productos</a></li>
+                                <li><a class="dropdown-item" href="/vendedorPedidos">Gestión pedidos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="login">
+                        <h6 class="me-2 text-light">Bienvenido:</h6>
+                        <h6 class="text-light me-4"><i class="fa-solid fa-user me-1 text-light"></i>
+                            <%= user.name %>
+                        </h6>
+                        <% if (user.estado==false ) { %>
+                            <a href="/login" class="btn btn-outline-light">
+                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>Ingresar</a>
+                            <% } else { %>
+                                <a href="/logout" class="btn btn-outline-light">
+                                    <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>Cerrar sesión</a>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <table class="table tablaVendedor rounded table-dark mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Identificador</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="bodyTablaProductos">
+
+            </tbody>
+        </table>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detalle producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-column">
+                        <div class="row d-flex">
+                            <div class="col-6">
+                                <img src="" class="imgModal" id="imgModal" alt="">
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="modalPrecio" class="form-label">Precio</label>
+                                    <input type="text" class="form-control" id="modalPrecio" placeholder="" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="modalDcto" class="form-label">Descuento (%)</label>
+                                    <input type="text" class="form-control" id="modalDcto" placeholder="" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="modalStock" class="form-label">Stock</label>
+                                    <input type="text" class="form-control" id="modalStock" placeholder="" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3">
+                                <label for="modalNombre" class="form-label">Nombre producto</label>
+                                <input type="text" class="form-control" id="modalNombre" placeholder="" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="modalCategoria" class="form-label">Categoría</label>
+                                <input type="text" class="form-control" id="modalCategoria" placeholder="" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="modalMarca" class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="modalMarca" placeholder="" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="modalFecha" class="form-label">Fecha de registro</label>
+                                <input type="text" class="form-control" id="modalFecha" placeholder="" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<%- include('baseFoot') -%>
+    <script src="/js/vendedor.js"></script>
+
+</html>

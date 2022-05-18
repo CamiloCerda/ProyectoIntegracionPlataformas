@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('baseHead') -%>
+    <link rel="stylesheet" href="/css/login.css">
+        <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../img/logo.png" alt="">
+            </div>
+            <div class="titulo">
+                <span>MusicPro</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <form action="/autenticar" method="post">
+                <div class="mb-3">
+                    <label for="inputNombreUsuario" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" name="inputNombreUsuario" id="inputNombreUsuario"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="inputPass" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="inputPass" id="inputPass">
+                </div>
+                <% if (datos.estado == 0) { %>
+                    <button type="submit" class="btn btn-dark" id="btnAutenticar">Ingresar</button>
+                    <a href="/" class="btn btn-dark">Continuar como invitado</a>
+                  <% } %>  
+                
+            </form>
+            <h6 class="msjError">
+                <%= datos.mensajeError%>
+            </h6>
+            <h6 class="msjExito">
+                <%= datos.mensajeExito%>
+            </h6>
+        </div>
+    </main>
+</body>
+<%- include('baseFoot') -%>
+</html>

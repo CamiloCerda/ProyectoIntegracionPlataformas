@@ -1,0 +1,44 @@
+header {
+    margin: 20px 0px 50px 0px;
+}
+header .container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 10%;
+}
+
+header .logo img {
+    width: 60%;
+}
+
+header .titulo {
+    font-family:'Beau Rivage', 'Gotic';
+    font-size: 50px;
+    font-weight: 600;
+}
+
+main .container{
+    width: 50%;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.estiloBtn {
+    text-decoration: none;
+}
+
+.msjError {
+    color: #fc4c4c;
+    margin-top: 5px;
+}
+
+.msjExito {
+    color: #47ab33;
+    margin-top: 5px;
+}

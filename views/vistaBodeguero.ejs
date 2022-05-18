@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('baseHead') -%>
+        <link rel="stylesheet" href="/css/index.css">
+        <title>Music Pro - Bodega</title>
+</head>
+
+<body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand titulo" href="/bodeguero">
+                    <div class="cajaLogo">
+                        <div class="titulo">
+                            <span>MusicPro</span>
+                        </div>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="/bodeguero">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <div class="login">
+                        <h6 class="me-2 text-light">Bienvenido:</h6>
+                        <h6 class="text-light me-4"><i class="fa-solid fa-user me-1 text-light"></i>
+                            <%= user.name %>
+                        </h6>
+                        <% if (user.estado==false ) { %>
+                            <a href="/login" class="btn btn-outline-light">
+                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>Ingresar</a>
+                            <% } else { %>
+                                <a href="/logout" class="btn btn-outline-light">
+                                    <i class="fa-solid fa-arrow-right-to-bracket me-1"></i>Cerrar sesión</a>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <table class="table tablaVendedor rounded table-dark mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Identificador</th>
+                    <th scope="col">Forma entrega</th>
+                    <th scope="col">Local retiro</th>
+                    <th scope="col">Empresa despacho</th>
+                    <th scope="col">Forma pago</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Estado pedido</th>
+                    <th scope="col">Detalle</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="bodyTablaPedidos">
+            </tbody>
+        </table>
+    </main>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalle Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalDetalleCarrito">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('baseFoot') -%>
+    <script src="/js/bodeguero.js"></script>
+
+</html>
