@@ -38,6 +38,7 @@ $(document).ready(function () {
 function pintarModal(id) {
     listaProductos.forEach(prod => {
         if(prod.idProducto == id){
+            console.log(prod.imgProducto);
             var url = 'data:image/jpeg;base64,' + base64encode(prod.imgProducto.data);
             $("#imgModal").attr('src', url);
             modalPrecio.val("$"+formatoMoneda(""+prod.precio));
